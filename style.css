@@ -2161,25 +2161,3 @@ a.contact-item:hover {
     transition: none !important;
   }
 }
-
-
-
-/* Fix right-side black strip on mobile */
-@media (max-width: 768px) {
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden !important;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    img,
-    video,
-    iframe {
-        max-width: 100%;
-    }
-}
