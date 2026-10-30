@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Data Form - Profile Details</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --input-bg: #1f2937;
+      --input-border: #374151;
+      --success: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 16px;
+    }
+    header h1 {
+      font-size: 26px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .card h2 {
+      font-size: 18px;
+      color: #818cf8;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .full-width {
+      grid-column: 1 / -1;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+    .hint {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    input, textarea, select {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 85px;
+    }
+    .subcard {
+      background: rgba(31, 41, 55, 0.5);
+      border: 1px dashed var(--input-border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .subcard-header {
+      font-weight: 600;
+      color: #c7d2fe;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+    .actions-bar {
+      position: sticky;
+      bottom: 16px;
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 14px;
+      padding: 16px 24px;
+      display: flex;
+      gap: 16px;
+      justify-content: flex-end;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+    .btn-success:hover {
+      background: #059669;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--input-border);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      background: var(--input-bg);
+    }
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #059669;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="toast" id="toast">Data Copied to Clipboard!</div>
+
+<div class="container">
+  <header>
+    <span class="badge">Portfolio Profile Form</span>
+    <h1>Personal Details & Portfolio Data</h1>
+    <p>Apni details yahan fill karein. Jo field na ho ya optional ho use khali chhod sakte hain. Submit karne ke baad data copy karke chat me bhej sakte hain ya download kar sakte hain.</p>
+  </header>
+
+  <form id="portfolioForm">
+    <!-- SECTION A: PERSONAL INFO -->
+    <div class="card">
+      <h2>👤 A. Personal Information</h2>
+      <div class="grid">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="fullName" placeholder="e.g. Rahul Sharma" required>
+        </div>
+        <div class="form-group">
+          <label>Professional Display Name (if different)</label>
+          <input type="text" id="displayName" placeholder="e.g. Rahul Sharma">
+          <span class="hint">Website logo aur hero me kya display karna hai</span>
+        </div>
+        <div class="form-group full-width">
+          <label>Portfolio Headline / Tagline *</label>
+          <input type="text" id="headline" placeholder="e.g. B.Tech CSE Student | Full-Stack Developer | Problem Solver" required>
+        </div>
+        <div class="form-group full-width">
+          <label>Short Professional Bio / About Me *</label>
+          <textarea id="bio" placeholder="2-4 lines about your passion, tech interests, and what you are building or learning..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Current Location (City, State)</label>
+          <input type="text" id="location" placeholder="e.g. New Delhi, India">
+        </div>
+        <div class="form-group">
+          <label>Show Location on Website?</label>
+          <select id="showLocation">
+            <option value="true">Yes, display location</option>
+            <option value="false">No, keep hidden</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Professional Email Address *</label>
+          <input type="email" id="email" placeholder="e.g. rahul.sharma@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number (Optional)</label>
+          <input type="text" id="phone" placeholder="e.g. +91 9876543210 (Leave blank if not public)">
+        </div>
+        <div class="form-group">
+          <label>Show Phone on Website?</label>
+          <select id="showPhone">
+            <option value="false">No (Recommended for privacy)</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Profile Photo File (if available)</label>
+          <input type="text" id="photoPath" placeholder="e.g. assets/images/profile.jpg (or blank)">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION B: EDUCATION -->
+    <div class="card">
+      <h2>🎓 B. Education</h2>
+      <div class="subcard">
+        <div class="subcard-header">College / Degree</div>
+        <div class="grid">
+          <div class="form-group">
+            <label>Degree *</label>
+            <input type="text" id="degree" placeholder="e.g. B.Tech" required>
+          </div>
+          <div class="form-group">
+            <label>Branch / Specialization *</label>
+            <input type="text" id="branch" placeholder="e.g. Computer Science & Engineering" required>
+          </div>
+          <div class="form-group full-width">
+            <label>College / University Name *</label>
+            <input type="text" id="college" placeholder="e.g. ABC Institute of Engineering & Technology" required>
+          </div>
+          <div class="form-group">
+            <label>Current Year / Semester</label>
+            <input type="text" id="currentYear" placeholder="e.g. 3rd Year (6th Semester)">
+          </div>
+          <div class="form-group">
+            <label>Duration / Batch</label>
+            <input type="text" id="batch" placeholder="e.g. 2022 - 2026">
+          </div>
+          <div class="form-group">
+            <label>CGPA or Percentage (Optional)</label>
+            <input type="text" id="cgpa" placeholder="e.g. 8.4 / 10 or 84%">
+          </div>
+          <div class="form-group full-width">
+            <label>Relevant Coursework</label>
+            <input type="text" id="coursework" placeholder="e.g. Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, OOPS">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION C: SKILLS -->
+    <div class="card">
+      <h2>⚡ C. Technical Skills (Honest proficiency)</h2>
+      <div class="grid">
+        <div class="form-group full-width">
+          <label>Programming Languages</label>
+          <input type="text" id="skillsLanguages" placeholder="e.g. C++ (Intermediate), Python (Intermediate), JavaScript (Intermediate), Java (Beginner)">
+        </div>
+        <div class="form-group full-width">
+          <label>Frontend Skills</label>
+          <input type="text" id="skillsFrontend" placeholder="e.g. HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS">
+        </div>
+        <div class="form-group full-width">
+          <label>Backend Skills</label>
+          <input type="text" id="skillsBackend" placeholder="e.g. Node.js, Express.js, REST APIs (or Not applicable)">
+        </div>
+        <div class="form-group full-width">
+          <label>Databases</label>
+          <input type="text" id="skillsDatabases" placeholder="e.g. MongoDB, MySQL, PostgreSQL">
+        </div>
+        <div class="form-group full-width">
+          <label>Core CS & DSA</label>
+          <input type="text" id="skillsDSA" placeholder="e.g. Data Structures & Algorithms, Object-Oriented Programming (OOP), System Design basics">
+        </div>
+        <div class="form-group full-width">
+          <label>Developer Tools & Version Control</label>
+          <input type="text" id="skillsTools" placeholder="e.g. Git, GitHub, VS Code, Postman, Linux basics, Vercel">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION D: PROJECTS -->
+    <div class="card">
+      <h2>🚀 D. Projects (Featured)</h2>
+      
+      <!-- Project 1 -->
+      <div class="subcard">
+        <div class="subcard-header">Project 1</div>
+        <div class="grid">
+          <div class="form-group">
+            <label>Project Title *</label>
+            <input type="text" id="proj1Title" placeholder="e.g. DevConnect - Developer Social Network">
+          </div>
+          <div class="form-group">
+            <label>Tech Stack *</label>
+            <input type="text" id="proj1Tech" placeholder="e.g. React.js, Node.js, Express, MongoDB">
+          </div>
+          <div class="form-group full-width">
+            <label>Short Description & Problem Solved</label>
+            <textarea id="proj1Desc" placeholder="Explain what the project does and the problem it addresses..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select id="proj1Status">
+              <option value="Completed">Completed</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Deployed">Deployed / Live</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Your Contribution</label>
+            <input type="text" id="proj1Contribution" placeholder="e.g. Designed UI components, implemented JWT authentication">
+          </div>
+          <div class="form-group">
+            <label>GitHub Repository URL</label>
+            <input type="url" id="proj1Github" placeholder="https://github.com/yourusername/repo">
+          </div>
+          <div class="form-group">
+            <label>Live Demo URL (if available)</label>
+            <input type="url" id="proj1Live" placeholder="https://yourproject.vercel.app">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="subcard">
+        <div class="subcard-header">Project 2</div>
+        <div class="grid">
+          <div class="form-group">
+            <label>Project Title</label>
+            <input type="text" id="proj2Title" placeholder="e.g. AI-Powered Expense Tracker">
+          </div>
+          <div class="form-group">
+            <label>Tech Stack</label>
+            <input type="text" id="proj2Tech" placeholder="e.g. Python, Flask, HTML/CSS, Chart.js">
+          </div>
+          <div class="form-group full-width">
+            <label>Short Description</label>
+            <textarea id="proj2Desc" placeholder="Project overview and problem solved..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select id="proj2Status">
+              <option value="Completed">Completed</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Deployed">Deployed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>GitHub Repo URL</label>
+            <input type="url" id="proj2Github" placeholder="https://github.com/yourusername/repo">
+          </div>
+          <div class="form-group">
+            <label>Live Demo URL</label>
+            <input type="url" id="proj2Live" placeholder="https://...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="subcard">
+        <div class="subcard-header">Project 3 (Optional)</div>
+        <div class="grid">
+          <div class="form-group">
+            <label>Project Title</label>
+            <input type="text" id="proj3Title" placeholder="e.g. Portfolio Website or Algorithm Visualizer">
+          </div>
+          <div class="form-group">
+            <label>Tech Stack</label>
+            <input type="text" id="proj3Tech" placeholder="e.g. HTML, CSS, JavaScript">
+          </div>
+          <div class="form-group full-width">
+            <label>Short Description</label>
+            <textarea id="proj3Desc" placeholder="Project overview..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>GitHub Repo URL</label>
+            <input type="url" id="proj3Github" placeholder="https://github.com/yourusername/repo">
+          </div>
+          <div class="form-group">
+            <label>Live Demo URL</label>
+            <input type="url" id="proj3Live" placeholder="https://...">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION E: EXPERIENCE & GOALS -->
+    <div class="card">
+      <h2>💼 E. Experience & Career Goals</h2>
+      <div class="grid">
+        <div class="form-group full-width">
+          <label>Internship / Work Experience</label>
+          <textarea id="experience" placeholder="If you have completed an internship, mention Company, Role, Duration, and Tech used. Otherwise write: Fresher - Seeking First Internship"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Target Roles</label>
+          <input type="text" id="targetRoles" placeholder="e.g. Software Development Engineer (SDE) Intern, Frontend Developer">
+        </div>
+        <div class="form-group">
+          <label>Work Arrangement</label>
+          <select id="workArrangement">
+            <option value="Flexible / Remote / Onsite">Flexible (Remote / Onsite / Hybrid)</option>
+            <option value="Remote">Remote Only</option>
+            <option value="Onsite">Onsite</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION F: CERTIFICATIONS & LINKS -->
+    <div class="card">
+      <h2>🏆 F. Certifications & Coding Profiles</h2>
+      <div class="grid">
+        <div class="form-group full-width">
+          <label>Certifications & Achievements</label>
+          <textarea id="certifications" placeholder="e.g. HackerRank 5-Star in Problem Solving, Coursera Meta Frontend Developer Certificate, Hackathon Finalist, etc."></textarea>
+        </div>
+        <div class="form-group">
+          <label>GitHub Profile URL</label>
+          <input type="url" id="githubUrl" placeholder="https://github.com/yourusername">
+        </div>
+        <div class="form-group">
+          <label>LinkedIn Profile URL</label>
+          <input type="url" id="linkedinUrl" placeholder="https://linkedin.com/in/yourusername">
+        </div>
+        <div class="form-group">
+          <label>LeetCode URL (Optional)</label>
+          <input type="url" id="leetcodeUrl" placeholder="https://leetcode.com/yourusername">
+        </div>
+        <div class="form-group">
+          <label>Other Profile (GFG / HackerRank / CodeChef)</label>
+          <input type="url" id="otherProfileUrl" placeholder="https://...">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION G: RESUME & DESIGN PREFERENCE -->
+    <div class="card">
+      <h2>🎨 G. Design Preferences & Resume</h2>
+      <div class="grid">
+        <div class="form-group">
+          <label>Theme Style</label>
+          <select id="themePref">
+            <option value="dark-toggle">Dark Theme with Light Mode Toggle (Recommended)</option>
+            <option value="dark-only">Dark Theme Only</option>
+            <option value="light-only">Light Theme Only</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Accent Color</label>
+          <select id="accentColor">
+            <option value="indigo-cyan">Electric Indigo & Cyan (Modern Tech)</option>
+            <option value="emerald-teal">Emerald & Mint (Clean & Minimal)</option>
+            <option value="purple-pink">Violet & Fuchsia (Creative)</option>
+            <option value="blue-sky">Royal Blue & Sky (Corporate & Professional)</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <label>Resume File (placed in assets/resume/)</label>
+          <input type="text" id="resumeFile" placeholder="e.g. resume.pdf (or write 'Not available' if no resume file yet)">
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions-bar">
+      <button type="button" class="btn btn-outline" onclick="loadSampleData()">Load Sample Data</button>
+      <button type="button" class="btn btn-primary" onclick="copyJSON()">📋 Copy JSON Data for Chat</button>
+      <button type="button" class="btn btn-success" onclick="downloadJSON()">💾 Download profile.json</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function getFormData() {
+    return {
+      personal: {
+        fullName: document.getElementById('fullName').value.trim(),
+        displayName: document.getElementById('displayName').value.trim() || document.getElementById('fullName').value.trim(),
+        headline: document.getElementById('headline').value.trim(),
+        bio: document.getElementById('bio').value.trim(),
+        location: document.getElementById('location').value.trim(),
+        showLocation: document.getElementById('showLocation').value === 'true',
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        showPhone: document.getElementById('showPhone').value === 'true',
+        photoPath: document.getElementById('photoPath').value.trim(),
+        showPhoto: !!document.getElementById('photoPath').value.trim()
+      },
+      education: [
+        {
+          degree: document.getElementById('degree').value.trim(),
+          branch: document.getElementById('branch').value.trim(),
+          college: document.getElementById('college').value.trim(),
+          currentYear: document.getElementById('currentYear').value.trim(),
+          batch: document.getElementById('batch').value.trim(),
+          cgpa: document.getElementById('cgpa').value.trim(),
+          coursework: document.getElementById('coursework').value.trim()
+        }
+      ],
+      skills: {
+        languages: document.getElementById('skillsLanguages').value.trim(),
+        frontend: document.getElementById('skillsFrontend').value.trim(),
+        backend: document.getElementById('skillsBackend').value.trim(),
+        databases: document.getElementById('skillsDatabases').value.trim(),
+        dsa: document.getElementById('skillsDSA').value.trim(),
+        tools: document.getElementById('skillsTools').value.trim()
+      },
+      projects: [
+        {
+          title: document.getElementById('proj1Title').value.trim(),
+          tech: document.getElementById('proj1Tech').value.trim(),
+          description: document.getElementById('proj1Desc').value.trim(),
+          status: document.getElementById('proj1Status').value,
+          contribution: document.getElementById('proj1Contribution').value.trim(),
+          github: document.getElementById('proj1Github').value.trim(),
+          live: document.getElementById('proj1Live').value.trim()
+        },
+        {
+          title: document.getElementById('proj2Title').value.trim(),
+          tech: document.getElementById('proj2Tech').value.trim(),
+          description: document.getElementById('proj2Desc').value.trim(),
+          status: document.getElementById('proj2Status').value,
+          github: document.getElementById('proj2Github').value.trim(),
+          live: document.getElementById('proj2Live').value.trim()
+        },
+        {
+          title: document.getElementById('proj3Title').value.trim(),
+          tech: document.getElementById('proj3Tech').value.trim(),
+          description: document.getElementById('proj3Desc').value.trim(),
+          github: document.getElementById('proj3Github').value.trim(),
+          live: document.getElementById('proj3Live').value.trim()
+        }
+      ].filter(p => p.title),
+      experience: document.getElementById('experience').value.trim(),
+      careerGoals: {
+        targetRoles: document.getElementById('targetRoles').value.trim(),
+        workArrangement: document.getElementById('workArrangement').value
+      },
+      certifications: document.getElementById('certifications').value.trim(),
+      socialLinks: {
+        github: document.getElementById('githubUrl').value.trim(),
+        linkedin: document.getElementById('linkedinUrl').value.trim(),
+        leetcode: document.getElementById('leetcodeUrl').value.trim(),
+        other: document.getElementById('otherProfileUrl').value.trim()
+      },
+      preferences: {
+        theme: document.getElementById('themePref').value,
+        accentColor: document.getElementById('accentColor').value,
+        resumeFile: document.getElementById('resumeFile').value.trim()
+      }
+    };
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 3000);
+  }
+
+  function copyJSON() {
+    const data = getFormData();
+    const str = JSON.stringify(data, null, 2);
+    navigator.clipboard.writeText(str).then(() => {
+      showToast('✅ Profile JSON data copied! Ab chat me paste kar dijiye.');
+    }).catch(() => {
+      prompt('Please copy this JSON text:', str);
+    });
+  }
+
+  function downloadJSON() {
+    const data = getFormData();
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'profile.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('💾 profile.json downloaded! Isko d:/portfolio/data/ folder me save karein.');
+  }
+
+  function loadSampleData() {
+    document.getElementById('fullName').value = 'Bablu Kumar';
+    document.getElementById('displayName').value = 'Bablu Kumar';
+    document.getElementById('headline').value = 'B.Tech CSE Student | Full-Stack Web Developer | Problem Solver';
+    document.getElementById('bio').value = 'Passionate Computer Science undergraduate with hands-on experience in modern web technologies, Data Structures, and problem solving. Eager to contribute to high-impact projects through software development internships.';
+    document.getElementById('location').value = 'India';
+    document.getElementById('email').value = 'bablu.cs@example.com';
+    document.getElementById('degree').value = 'B.Tech';
+    document.getElementById('branch').value = 'Computer Science & Engineering';
+    document.getElementById('college').value = 'Your College / University Name';
+    document.getElementById('currentYear').value = '3rd Year';
+    document.getElementById('batch').value = '2022 - 2026';
+    document.getElementById('skillsLanguages').value = 'C++, Python, JavaScript (ES6+), SQL';
+    document.getElementById('skillsFrontend').value = 'HTML5, CSS3, JavaScript, React.js, Tailwind CSS';
+    document.getElementById('skillsBackend').value = 'Node.js, Express.js, REST APIs';
+    document.getElementById('skillsDatabases').value = 'MySQL, MongoDB';
+    document.getElementById('skillsDSA').value = 'Data Structures & Algorithms, OOPs';
+    document.getElementById('skillsTools').value = 'Git, GitHub, VS Code, Postman';
+    document.getElementById('proj1Title').value = 'Personal Portfolio Website';
+    document.getElementById('proj1Tech').value = 'HTML5, CSS3, JavaScript';
+    document.getElementById('proj1Desc').value = 'A responsive, high-performance personal portfolio showcasing projects, education, and technical expertise.';
+    document.getElementById('proj1Contribution').value = 'Designed UI, built interactive components, implemented theme toggle';
+    document.getElementById('experience').value = 'Fresher - Seeking First Technology Internship';
+    document.getElementById('targetRoles').value = 'Software Development Engineer (SDE) Intern, Frontend Developer';
+    showToast('Example data loaded! You can modify fields as needed.');
+  }
+</script>
+
+</body>
+</html>

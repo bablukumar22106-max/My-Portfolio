@@ -1,0 +1,77 @@
+{
+  "personal": {
+    "fullName": "Bablu Kumar",
+    "displayName": "Bablu Kumar",
+    "headline": "B.Tech CSE Student | Full-Stack Web Developer | Problem Solver",
+    "bio": "Passionate Computer Science undergraduate with hands-on experience in modern web technologies, Data Structures, and problem solving. Eager to contribute to high-impact projects through software development internships.",
+    "location": "India",
+    "showLocation": true,
+    "email": "bablukumar22106@gmail.com",
+    "phone": "8271554491",
+    "showPhone": false,
+    "photoPath": "assets/images/profile.jpg",
+    "showPhoto": true
+  },
+  "education": [
+    {
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "college": "Your College / University Name",
+      "currentYear": "3rd Year",
+      "batch": "2022 - 2026",
+      "cgpa": "7.39",
+      "coursework": "Data Structures and Algorithms (DSA), Programming in C/C++, Object-Oriented Programming (OOP), Database Management Systems (DBMS), Operating Systems (OS), Computer Networks (CN), Theory of Computation (TOC), Compiler Design, Computer Organization and Architecture (COA), Discrete Mathematics, Engineering Mathematics, Artificial Intelligence, and Machine Learning,java ,python."
+    }
+  ],
+  "skills": {
+    "languages": "C++, Python, JavaScript (ES6+), SQL",
+    "frontend": "HTML5, CSS3, JavaScript, React.js, Tailwind CSS",
+    "backend": "Node.js, Express.js, REST APIs",
+    "databases": "MySQL, MongoDB",
+    "dsa": "Data Structures & Algorithms, OOPs",
+    "tools": "Git, GitHub, VS Code, Postman"
+  },
+  "projects": [
+    {
+      "title": "Personal Portfolio Website",
+      "tech": "HTML5, CSS3, JavaScript",
+      "description": "A responsive, high-performance personal portfolio showcasing projects, education, and technical expertise.",
+      "status": "In Progress",
+      "contribution": "Designed UI, built interactive components, implemented theme toggle",
+      "github": "https://github.com/bablukumar22106-max/portfolio",
+      "live": ""
+    },
+    {
+      "title": "Weathercast  App",
+      "tech": "HTML5, CSS3, JavaScript, Weather API",
+      "description": "Developed a responsive weather application that helps users check weather information for different locations. The application uses JavaScript and a weather API to fetch and display weather data through a simple, user-friendly interface.",
+      "status": "Completed",
+      "github": "https://github.com/bablukumar22106-max/portfolio",
+      "live": ""
+    },
+    {
+      "title": "UrbanFade – Salon Website",
+      "tech": "HTML5, CSS3, JavaScript",
+      "description": "Designed and developed a salon website for Bablu Hairstyle, located in Umta More, near High School, Umta, Dharnai, Jehanabad, Bihar. The website showcases salon services, business hours, contact information, and WhatsApp contact functionality. The goal is to provide customers with an easy way to explore salon services and contact the business online.",
+      "github": "https://github.com/bablukumar22106-max/portfolio",
+      "live": ""
+    }
+  ],
+  "experience": "Fresher - Seeking First Technology Internship",
+  "careerGoals": {
+    "targetRoles": "Software Development Engineer (SDE) Intern, Frontend Developer",
+    "workArrangement": "Flexible / Remote / Onsite"
+  },
+  "certifications": "Internships\n\nPython Programming Internship — Completed\n\nWeb Development Internship — Completed\n\nPython for Machine Learning Internship — Completed\n\nArtificial Intelligence Internship — Completed,\n IIT Bombay – Spoken Tutorial Certifications\n\nC Programming\n\nC++ Programming\n\nJava Programming\n\nPython Programming\n\nHTML\n\nCSS\n\nJavaScript,\n\nAI, Data Science & Cybersecurity through cisco\n\nIntroduction to Cyber Security\n\nIntroduction to Python Programming\n\nIntroduction to Modern AI\n\nIntroduction to Data Science\n\nIntroduction to Network\n\nData Analytics",
+  "socialLinks": {
+    "github": "https://github.com/bablukumar22106-max/portfolio",
+    "linkedin": "www.linkedin.com/in/bablu-kumar-983447313",
+    "leetcode": "",
+    "other": ""
+  },
+  "preferences": {
+    "theme": "dark-toggle",
+    "accentColor": "indigo-cyan",
+    "resumeFile": ""
+  }
+}

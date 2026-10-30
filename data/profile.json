@@ -1,0 +1,208 @@
+{
+  "personal": {
+    "fullName": "Bablu Kumar",
+    "displayName": "Bablu Kumar",
+    "headline": "B.Tech CSE Student | Full-Stack Web Developer | Problem Solver",
+    "bio": "Passionate Computer Science undergraduate at Government Engineering College, Sheikhpura (BEU) with hands-on experience in modern web technologies, Data Structures, and practical problem solving. Proven track record across multiple software and AI internships, eager to contribute to high-impact technology projects.",
+    "location": "Gaya, Bihar, India",
+    "showLocation": true,
+    "email": "bablukumar22106@gmail.com",
+    "phone": "8271554491",
+    "showPhone": false,
+    "photoPath": "assets/images/profile.jpg",
+    "showPhoto": true
+  },
+  "education": [
+    {
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "college": "Government Engineering College, Sheikhpura",
+      "university": "Bihar Engineering University (BEU)",
+      "currentYear": "4th Year (7th Semester)",
+      "batch": "2023 - 2027",
+      "cgpa": "7.39",
+      "coursework": [
+        "Data Structures & Algorithms (DSA)",
+        "Object-Oriented Programming (OOP)",
+        "Database Management Systems (DBMS)",
+        "Operating Systems (OS)",
+        "Computer Networks (CN)",
+        "Artificial Intelligence & Machine Learning",
+        "Theory of Computation (TOC)",
+        "Compiler Design",
+        "Computer Architecture (COA)",
+        "Discrete Mathematics"
+      ]
+    }
+  ],
+  "skills": {
+    "languages": [
+      { "name": "C++", "level": "Intermediate", "category": "Core" },
+      { "name": "Python", "level": "Intermediate", "category": "Core" },
+      { "name": "JavaScript (ES6+)", "level": "Intermediate", "category": "Web" },
+      { "name": "Java", "level": "Intermediate", "category": "Core" },
+      { "name": "SQL", "level": "Intermediate", "category": "Database" },
+      { "name": "C", "level": "Intermediate", "category": "Core" }
+    ],
+    "frontend": [
+      { "name": "HTML5", "level": "Advanced" },
+      { "name": "CSS3", "level": "Advanced" },
+      { "name": "JavaScript", "level": "Intermediate" },
+      { "name": "React.js", "level": "Intermediate" },
+      { "name": "Tailwind CSS", "level": "Intermediate" },
+      { "name": "Responsive Design", "level": "Advanced" }
+    ],
+    "backend": [
+      { "name": "Node.js", "level": "Intermediate" },
+      { "name": "Express.js", "level": "Intermediate" },
+      { "name": "RESTful APIs", "level": "Intermediate" }
+    ],
+    "databases": [
+      { "name": "MySQL", "level": "Intermediate" },
+      { "name": "MongoDB", "level": "Intermediate" }
+    ],
+    "coreCS": [
+      { "name": "Data Structures & Algorithms", "level": "Intermediate" },
+      { "name": "Object-Oriented Programming (OOP)", "level": "Intermediate" },
+      { "name": "Database Management (DBMS)", "level": "Intermediate" },
+      { "name": "Computer Networks", "level": "Intermediate" }
+    ],
+    "tools": [
+      { "name": "Git & GitHub", "level": "Intermediate" },
+      { "name": "VS Code", "level": "Advanced" },
+      { "name": "Postman", "level": "Intermediate" },
+      { "name": "Vercel / Netlify", "level": "Intermediate" }
+    ]
+  },
+  "internships": [
+    {
+      "company": "CodTech Solution",
+      "role": "Artificial Intelligence (AI) Intern",
+      "type": "Internship",
+      "status": "Completed",
+      "description": "Explored real-world Artificial Intelligence concepts, machine learning pipelines, data preprocessing, and model implementation for AI-driven solutions.",
+      "technologies": ["Artificial Intelligence", "Python", "Machine Learning", "Data Processing"]
+    },
+    {
+      "company": "Edulogy",
+      "role": "Python Programming Intern",
+      "type": "Internship",
+      "status": "Completed",
+      "description": "Developed modular Python applications, implemented object-oriented programming concepts, problem-solving scripts, and algorithm optimization.",
+      "technologies": ["Python", "OOPs", "Algorithms", "Software Scripting"]
+    },
+    {
+      "company": "InternPe",
+      "role": "Web Development Intern",
+      "type": "Internship",
+      "status": "Completed",
+      "description": "Constructed responsive web interfaces, utilized semantic HTML5, modern CSS3 styling, and JavaScript logic to create interactive user experiences.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "Responsive Web Design"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "urbanfade-salon",
+      "title": "UrbanFade – Salon Website",
+      "tagline": "Modern responsive business website for Bablu Hairstyle",
+      "tech": ["HTML5", "CSS3", "JavaScript", "Responsive UI"],
+      "description": "Designed and developed a commercial salon website for Bablu Hairstyle (Umta More, near High School, Umta, Dharnai, Jehanabad, Bihar). Showcases haircut & styling services, pricing, business hours, and instant WhatsApp appointment booking functionality.",
+      "status": "Completed",
+      "contribution": "End-to-end design & development: created responsive layouts, service showcase cards, interactive UI elements, and direct WhatsApp contact integration.",
+      "features": [
+        "Service catalog with transparent price cards",
+        "Direct WhatsApp appointment booking CTA",
+        "Google Maps location & contact details",
+        "Fast-loading mobile-first responsive layout"
+      ],
+      "github": "https://github.com/bablukumar22106-max/portfolio",
+      "live": ""
+    },
+    {
+      "id": "weathercast-app",
+      "title": "Weathercast App",
+      "tagline": "Real-time location-based weather tracking application",
+      "tech": ["JavaScript (ES6+)", "Weather API", "HTML5", "CSS3"],
+      "description": "Developed an interactive weather application that enables users to query real-time weather metrics for cities worldwide. Integrates live Weather API data, displays temperature, atmospheric conditions, humidity, and responsive state animations.",
+      "status": "Completed",
+      "contribution": "Integrated asynchronous REST Weather API, parsed JSON telemetry, implemented search debouncing, and created weather condition graphics.",
+      "features": [
+        "Real-time weather data search for global cities",
+        "Dynamic weather metrics (temperature, humidity, wind)",
+        "Responsive cards with modern UI aesthetics",
+        "Robust error handling for invalid city queries"
+      ],
+      "github": "https://github.com/bablukumar22106-max/portfolio",
+      "live": ""
+    },
+    {
+      "id": "personal-portfolio",
+      "title": "Personal Portfolio Website",
+      "tagline": "High-performance dynamic portfolio engineered with modular architecture",
+      "tech": ["HTML5", "CSS3", "Vanilla JavaScript", "JSON Data Engine"],
+      "description": "Designed and engineered an accessible, responsive personal developer portfolio with dynamic JSON data rendering, dark/light theme switching, smooth animations, and clean modular architecture.",
+      "status": "In Progress",
+      "contribution": "Engineered the entire data-driven frontend architecture, accessible UI design system, theme switching logic, and mobile responsiveness.",
+      "features": [
+        "Dynamic JSON-driven content rendering without hardcoding",
+        "Dual theme engine with persistent Dark/Light mode toggle",
+        "Clean WCAG accessible navigation and keyboard focus states",
+        "Zero external bloated dependencies for lightning speed"
+      ],
+      "github": "https://github.com/bablukumar22106-max/portfolio",
+      "live": ""
+    }
+  ],
+  "certifications": [
+    {
+      "category": "AI & Machine Learning",
+      "issuer": "Industry Certified",
+      "title": "Python for Machine Learning"
+    },
+    {
+      "category": "Cisco Networking Academy",
+      "issuer": "Cisco",
+      "items": [
+        "Introduction to Modern AI",
+        "Introduction to Data Science",
+        "Data Analytics",
+        "Introduction to Cybersecurity",
+        "Introduction to Python Programming",
+        "Introduction to Networks"
+      ]
+    },
+    {
+      "category": "IIT Bombay Spoken Tutorial",
+      "issuer": "IIT Bombay",
+      "items": [
+        "C Programming",
+        "C++ Programming",
+        "Java Programming",
+        "Python Programming",
+        "HTML & CSS",
+        "JavaScript"
+      ]
+    }
+  ],
+  "careerGoals": {
+    "targetRoles": [
+      "Software Development Engineer (SDE) Intern",
+      "Frontend Developer",
+      "Full-Stack Web Developer",
+      "AI / ML Intern"
+    ],
+    "workArrangement": "Flexible (Remote / Onsite / Hybrid)",
+    "locationPreference": "Open to opportunities in India & Remote",
+    "status": "Actively seeking 2026/2027 Technology Internships & New Grad Opportunities"
+  },
+  "socialLinks": {
+    "github": "https://github.com/bablukumar22106-max",
+    "linkedin": "https://www.linkedin.com/in/bablu-kumar-983447313",
+    "email": "bablukumar22106@gmail.com"
+  },
+  "preferences": {
+    "theme": "dark-toggle",
+    "accentColor": "indigo-cyan",
+    "resumeFile": ""
+  }
+}
