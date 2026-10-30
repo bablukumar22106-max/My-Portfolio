@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Bablu Kumar - Personal Developer Portfolio
 
 A modern, responsive, performance-optimized personal portfolio engineered for **Bablu Kumar**, B.Tech Computer Science and Engineering student at **Government Engineering College, Sheikhpura (Bihar Engineering University)**.
@@ -127,3 +128,49 @@ To update your CGPA, add a new project, or change your bio, simply edit `data/pr
 ## 🛡️ Privacy & Security Best Practices
 - Private personal details (phone number, home address) are protected and not displayed publicly.
 - Safe mail client integration: the contact form opens the user's default email client or copies the message cleanly, without exposing backend credentials or secret API keys.
+=======
+# My-Portfolio
+# Bablu Kumar | Developer Portfolio
+
+Welcome to my personal developer portfolio!
+
+## About Me
+I am a B.Tech Computer Science and Engineering student interested in Software Development, Web Development and Artificial Intelligence.
+
+## Education
+- Degree: B.Tech CSE
+- College: Government Engineering College Sheikhpura
+- Current Semester: 7th
+- Batch: 2023–2027
+
+## Skills
+- C, C++, Java, Python
+- HTML, CSS, JavaScript
+- Data Structures & Algorithms
+- Machine Learning
+
+## Projects
+- Stock Prediction AI
+- Weather Application
+- Personal Developer Portfolio
+- Urbanfade salon-website
+
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+
+## Features
+- Responsive Design
+- Smooth Animations
+- Dark Theme
+- Projects Showcase
+- Contact Section
+
+## Contact
+- GitHub:https://github.com/bablukumar22106-max
+- LinkedIn:https://www.linkedin.com/in/bablu-kumar-983447313
+- Email: bablukumar22106@gmail.com
+
+Thank you for visiting my portfolio!
+>>>>>>> cae9f6fb51031821f21df2aa8aeb240853ed2705
