@@ -35,42 +35,40 @@
     }
   ],
   "skills": {
-    "languages": [
-      { "name": "C++", "level": "Intermediate", "category": "Core" },
-      { "name": "Python", "level": "Intermediate", "category": "Core" },
-      { "name": "JavaScript (ES6+)", "level": "Intermediate", "category": "Web" },
-      { "name": "Java", "level": "Intermediate", "category": "Core" },
-      { "name": "SQL", "level": "Intermediate", "category": "Database" },
-      { "name": "C", "level": "Intermediate", "category": "Core" }
+    "programmingLanguages": [
+      { "name": "C++" },
+      { "name": "Python" },
+      { "name": "JavaScript (ES6+)" },
+      { "name": "Java" },
+      { "name": "SQL" },
+      { "name": "C" }
     ],
-    "frontend": [
-      { "name": "HTML5", "level": "Advanced" },
-      { "name": "CSS3", "level": "Advanced" },
-      { "name": "JavaScript", "level": "Intermediate" },
-      { "name": "React.js", "level": "Intermediate" },
-      { "name": "Tailwind CSS", "level": "Intermediate" },
-      { "name": "Responsive Design", "level": "Advanced" }
-    ],
-    "backend": [
-      { "name": "Node.js", "level": "Intermediate" },
-      { "name": "Express.js", "level": "Intermediate" },
-      { "name": "RESTful APIs", "level": "Intermediate" }
+    "webDevelopment": [
+      { "name": "HTML5" },
+      { "name": "CSS3 / Flex / Grid" },
+      { "name": "React.js" },
+      { "name": "Tailwind CSS" },
+      { "name": "Node.js" },
+      { "name": "Express.js" },
+      { "name": "RESTful APIs" },
+      { "name": "Responsive Design" }
     ],
     "databases": [
-      { "name": "MySQL", "level": "Intermediate" },
-      { "name": "MongoDB", "level": "Intermediate" }
-    ],
-    "coreCS": [
-      { "name": "Data Structures & Algorithms", "level": "Intermediate" },
-      { "name": "Object-Oriented Programming (OOP)", "level": "Intermediate" },
-      { "name": "Database Management (DBMS)", "level": "Intermediate" },
-      { "name": "Computer Networks", "level": "Intermediate" }
+      { "name": "MySQL" },
+      { "name": "MongoDB" },
+      { "name": "Relational Schema & Queries" }
     ],
     "tools": [
-      { "name": "Git & GitHub", "level": "Intermediate" },
-      { "name": "VS Code", "level": "Advanced" },
-      { "name": "Postman", "level": "Intermediate" },
-      { "name": "Vercel / Netlify", "level": "Intermediate" }
+      { "name": "Git & GitHub" },
+      { "name": "VS Code" },
+      { "name": "Postman" },
+      { "name": "Vercel & Deployment" }
+    ],
+    "aiAndMachineLearning": [
+      { "name": "Machine Learning" },
+      { "name": "Scikit-learn" },
+      { "name": "Data Analysis & Preprocessing" },
+      { "name": "NumPy & Pandas" }
     ]
   },
   "internships": [
@@ -135,12 +133,29 @@
       "live": ""
     },
     {
+      "id": "stock-prediction-ai",
+      "title": "Stock Prediction AI",
+      "tagline": "Machine Learning stock market prediction model using Python & Scikit-learn",
+      "tech": ["Python", "Scikit-learn", "Pandas", "yfinance"],
+      "description": "Predictive Machine Learning model analyzing historical market data from Reliance Industries (RELIANCE.NS) using Yahoo Finance (yfinance). Trains a Linear Regression model to forecast closing stock prices with evaluation metrics.",
+      "status": "Completed",
+      "contribution": "Financial data ingestion, exploratory feature engineering, train-test splitting, regression model evaluation, and matplotlib trend visualization.",
+      "features": [
+        "Historical data extraction using yfinance",
+        "Feature engineering for financial metrics",
+        "Linear regression model evaluation with MSE and R2",
+        "Visual price movement trends and forecasting"
+      ],
+      "github": "https://github.com/bablukumar22106-max/portfolio",
+      "live": ""
+    },
+    {
       "id": "personal-portfolio",
       "title": "Personal Portfolio Website",
       "tagline": "High-performance dynamic portfolio engineered with modular architecture",
       "tech": ["HTML5", "CSS3", "Vanilla JavaScript", "JSON Data Engine"],
       "description": "Designed and engineered an accessible, responsive personal developer portfolio with dynamic JSON data rendering, dark/light theme switching, smooth animations, and clean modular architecture.",
-      "status": "In Progress",
+      "status": "Completed",
       "contribution": "Engineered the entire data-driven frontend architecture, accessible UI design system, theme switching logic, and mobile responsiveness.",
       "features": [
         "Dynamic JSON-driven content rendering without hardcoding",

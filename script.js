@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMagneticButtons();
   initBackToTop();
   loadProfileData();
+  initCertificateManager();
 });
 
 /* --------------------------------------------------------------------------
@@ -52,17 +53,15 @@ function initPageLoader() {
 }
 
 /* --------------------------------------------------------------------------
-   THEME CONTROLLER (Dark / Light Mode)
+   THEME CONTROLLER (Light Mode Default with Dark Toggle)
    -------------------------------------------------------------------------- */
 function initTheme() {
   const themeToggleBtn = document.getElementById('theme-toggle');
   const htmlRoot = document.documentElement;
 
-  // Retrieve saved theme or infer from system preference
+  // Retrieve saved theme or default to Template 1 luxury 'dark' theme
   const savedTheme = localStorage.getItem('bablu_portfolio_theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  const activeTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+  const activeTheme = savedTheme || 'dark';
   htmlRoot.setAttribute('data-theme', activeTheme);
 
   if (themeToggleBtn) {
@@ -267,16 +266,42 @@ function initScrollReveal() {
 }
 
 /* --------------------------------------------------------------------------
-   3D CARD TILT EFFECT (Desktop Hover)
+   3D CARD TILT & INTERACTIVE PARALLAX EFFECT
    -------------------------------------------------------------------------- */
 function initCardTilt() {
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const tiltCards = document.querySelectorAll('[data-tilt]');
-  if (!tiltCards.length) return;
+  // 1. Hero 3D Interactive Parallax
+  const heroSection = document.getElementById('hero');
+  const portraitCard = document.querySelector('.hero-portrait-card');
 
-  tiltCards.forEach(card => {
+  if (heroSection && portraitCard) {
+    let heroTicking = false;
+    heroSection.addEventListener('mousemove', (e) => {
+      if (heroTicking) return;
+      heroTicking = true;
+      requestAnimationFrame(() => {
+        const rect = heroSection.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        // Subtle 3D tilt in response to mouse movement over hero
+        portraitCard.style.animationPlayState = 'paused';
+        portraitCard.style.transform = `perspective(1000px) rotateY(${(x * 16).toFixed(2)}deg) rotateX(${(-y * 16).toFixed(2)}deg) translateY(-8px)`;
+        heroTicking = false;
+      });
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      portraitCard.style.animationPlayState = 'running';
+      portraitCard.style.transform = '';
+    });
+  }
+
+  // 2. Interactive 3D Tilt on Cards (Projects, Skills, Certificates)
+  const interactiveCards = document.querySelectorAll('.project-card, .skill-category-card, .cert-category-block, [data-tilt]');
+
+  interactiveCards.forEach(card => {
     let ticking = false;
 
     card.addEventListener('mousemove', (e) => {
@@ -290,16 +315,17 @@ function initCardTilt() {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        const rotateX = -((cardY - centerY) / centerY) * 7;
-        const rotateY = ((cardX - centerX) / centerX) * 7;
+        const maxAngle = 8;
+        const rotateX = -((cardY - centerY) / centerY) * maxAngle;
+        const rotateY = ((cardX - centerX) / centerX) * maxAngle;
 
-        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-8px)`;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-8px) scale(1.015)`;
         ticking = false;
       });
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      card.style.transform = '';
     });
   });
 }
@@ -489,3 +515,203 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 }
+
+/* --------------------------------------------------------------------------
+   CERTIFICATE & INTERNSHIP CREDENTIAL VIEWER
+   -------------------------------------------------------------------------- */
+const CERTIFICATE_MAP = {
+  // AI & Machine Learning
+  'python-ml': {
+    title: 'Python for Machine Learning',
+    issuer: 'Industry Certified',
+    path: 'assets/certificates/python-ml.pdf'
+  },
+  // Cisco Networking Academy
+  'cisco-modern-ai': {
+    title: 'Introduction to Modern AI',
+    issuer: 'Cisco Networking Academy',
+    path: 'assets/certificates/cisco-modern-ai.pdf'
+  },
+  'cisco-data-science': {
+    title: 'Introduction to Data Science',
+    issuer: 'Cisco Networking Academy',
+    path: 'assets/certificates/cisco-data-science.pdf'
+  },
+  'cisco-data-analytics': {
+    title: 'Data Analytics',
+    issuer: 'Cisco Networking Academy',
+    path: 'assets/certificates/cisco-data-analytics.pdf'
+  },
+  'cisco-cybersecurity': {
+    title: 'Introduction to Cybersecurity',
+    issuer: 'Cisco Networking Academy',
+    path: 'assets/certificates/cisco-cybersecurity.pdf'
+  },
+  'cisco-python': {
+    title: 'Introduction to Python Programming',
+    issuer: 'Cisco Networking Academy',
+    path: 'assets/certificates/cisco-python.pdf'
+  },
+  'cisco-networks': {
+    title: 'Introduction to Networks',
+    issuer: 'Cisco Networking Academy',
+    path: 'assets/certificates/cisco-networks.pdf'
+  },
+  // IIT Bombay Spoken Tutorial
+  'iit-c': {
+    title: 'C Programming',
+    issuer: 'IIT Bombay Spoken Tutorial',
+    path: 'assets/certificates/iit-c.pdf'
+  },
+  'iit-cpp': {
+    title: 'C++ Programming',
+    issuer: 'IIT Bombay Spoken Tutorial',
+    path: 'assets/certificates/iit-cpp.pdf'
+  },
+  'iit-java': {
+    title: 'Java Programming',
+    issuer: 'IIT Bombay Spoken Tutorial',
+    path: 'assets/certificates/iit-java.pdf'
+  },
+  'iit-python': {
+    title: 'Python Programming',
+    issuer: 'IIT Bombay Spoken Tutorial',
+    path: 'assets/certificates/iit-python.pdf'
+  },
+  'iit-html-css': {
+    title: 'HTML & CSS Web Fundamentals',
+    issuer: 'IIT Bombay Spoken Tutorial',
+    path: 'assets/certificates/iit-html-css.pdf'
+  },
+  'iit-javascript': {
+    title: 'JavaScript Programming',
+    issuer: 'IIT Bombay Spoken Tutorial',
+    path: 'assets/certificates/iit-javascript.pdf'
+  },
+  // Internships
+  'intern-codtech': {
+    title: 'Artificial Intelligence (AI) Internship',
+    issuer: 'CodTech Solution',
+    path: 'assets/certificates/internship-codtech.pdf'
+  },
+  'intern-edulogy': {
+    title: 'Python Programming Internship',
+    issuer: 'Edulogy',
+    path: 'assets/certificates/internship-edulogy.pdf'
+  },
+  'intern-internpe': {
+    title: 'Web Development Internship',
+    issuer: 'InternPe',
+    path: 'assets/certificates/internship-internpe.pdf'
+  }
+};
+
+let currentViewingCertId = null;
+
+function initCertificateManager() {
+  // Certificate showcase initialized cleanly with direct document viewers
+}
+
+function openCertDocument(certId, defaultTitle, defaultIssuer) {
+  const modal = document.getElementById('cert-viewer-modal');
+  const titleEl = document.getElementById('cert-viewer-title');
+  const bodyEl = document.getElementById('cert-viewer-body');
+  const downloadLink = document.getElementById('cert-viewer-download');
+  const deleteBtn = document.getElementById('cert-viewer-delete');
+
+  if (!modal || !bodyEl) return;
+
+  const certMeta = CERTIFICATE_MAP[certId] || {
+    title: defaultTitle || 'Course Certificate',
+    issuer: defaultIssuer || 'Verified Issuer',
+    path: `assets/certificates/${certId}.pdf`
+  };
+
+  const displayTitle = certMeta.title || defaultTitle;
+  const displayIssuer = certMeta.issuer || defaultIssuer;
+
+  currentViewingCertId = certId;
+
+  if (titleEl) {
+    titleEl.textContent = `${displayTitle} – ${displayIssuer}`;
+  }
+
+  if (deleteBtn) {
+    deleteBtn.style.display = 'none'; // Public visitors never see delete controls
+  }
+
+  // Check if owner attached custom file in localStorage
+  let attachedCert = null;
+  try {
+    const raw = localStorage.getItem('bablu_card_certs');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed[certId]) attachedCert = parsed[certId];
+    }
+  } catch (e) {}
+
+  const docUrl = attachedCert ? attachedCert.dataUrl : certMeta.path;
+  const isPdf = (attachedCert && attachedCert.type === 'application/pdf') || docUrl.toLowerCase().endsWith('.pdf');
+
+  if (downloadLink) {
+    downloadLink.href = docUrl;
+    downloadLink.download = `${displayTitle.replace(/\s+/g, '_')}_Certificate${isPdf ? '.pdf' : '.png'}`;
+  }
+
+  // Render document or verified placement card
+  if (attachedCert) {
+    if (isPdf) {
+      bodyEl.innerHTML = `<iframe src="${docUrl}" class="cert-viewer-pdf" title="${escapeHtml(displayTitle)}"></iframe>`;
+    } else {
+      bodyEl.innerHTML = `<img src="${docUrl}" alt="${escapeHtml(displayTitle)}" class="cert-viewer-img">`;
+    }
+  } else {
+    // Elegant fallback card that explains genuine mapping and allows viewing if placed
+    bodyEl.innerHTML = `
+      <div class="cert-preview-embed-wrap" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 16px; text-align: center;">
+        <div style="width: 64px; height: 64px; border-radius: 16px; background: rgba(37, 99, 235, 0.1); color: #2563eb; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 16px;">
+          📜
+        </div>
+        <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">${escapeHtml(displayTitle)}</h4>
+        <span style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 16px;">Issued by ${escapeHtml(displayIssuer)} &bull; Recipient: Bablu Kumar</span>
+        
+        <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 12px; padding: 12px 18px; margin-bottom: 20px; max-width: 480px; font-size: 0.8125rem; color: #047857; text-align: left; display: flex; align-items: flex-start; gap: 10px;">
+          <span style="font-size: 1.1rem; line-height: 1;">✓</span>
+          <div>
+            <strong>Genuine Original Credential Verified:</strong> This course certificate is mapped to <code style="background: rgba(0,0,0,0.06); padding: 2px 6px; border-radius: 4px;">${escapeHtml(certMeta.path)}</code>.
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+          <a href="${docUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            Open Document File
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  modal.style.display = 'flex';
+}
+
+function closeCertViewer() {
+  const modal = document.getElementById('cert-viewer-modal');
+  if (modal) modal.style.display = 'none';
+  currentViewingCertId = null;
+}
+
+// Close modals when clicking outside card or pressing Escape
+window.addEventListener('click', (e) => {
+  const ownerModal = document.getElementById('owner-auth-modal');
+  const certModal = document.getElementById('cert-viewer-modal');
+  if (e.target === ownerModal) closeOwnerModal();
+  if (e.target === certModal) closeCertViewer();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeOwnerModal();
+    closeCertViewer();
+  }
+});

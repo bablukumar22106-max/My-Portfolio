@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.22)"/>
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.08)"/>
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="blurGlow">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Decorative Sun Glow -->
+  <circle cx="680" cy="90" r="80" fill="url(#sunGrad)" opacity="0.35" filter="url(#blurGlow)"/>
+  <circle cx="680" cy="90" r="50" fill="url(#sunGrad)"/>
+
+  <!-- Cloud Shapes in background -->
+  <path d="M120 180 q30 -50 70 -30 q50 -40 90 0 q40 -20 60 20 h-220 z" fill="#ffffff" opacity="0.18"/>
+  <path d="M520 220 q25 -40 60 -25 q40 -35 80 0 q35 -15 50 20 h-190 z" fill="#ffffff" opacity="0.22"/>
+
+  <!-- Main Weather Dashboard Card -->
+  <rect x="150" y="80" width="500" height="290" rx="20" fill="url(#cardBg)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5" backdrop-filter="blur(10px)"/>
+
+  <!-- Top bar of card -->
+  <circle cx="185" cy="115" r="5" fill="#f87171"/>
+  <circle cx="202" cy="115" r="5" fill="#fbbf24"/>
+  <circle cx="219" cy="115" r="5" fill="#34d399"/>
+  <text x="400" y="120" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" letter-spacing="1">LIVE WEATHER MONITOR • GAYA, IN</text>
+
+  <!-- Big Temperature -->
+  <text x="210" y="210" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="800">28°C</text>
+  <text x="210" y="240" fill="rgba(255, 255, 255, 0.9)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600">Partly Cloudy • Sunny Intervals</text>
+
+  <!-- Weather Metrics Chips -->
+  <rect x="210" y="270" width="120" height="60" rx="12" fill="rgba(255, 255, 255, 0.15)"/>
+  <text x="230" y="295" fill="rgba(255, 255, 255, 0.75)" font-family="sans-serif" font-size="11" font-weight="500">HUMIDITY</text>
+  <text x="230" y="318" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="700">62%</text>
+
+  <rect x="345" y="270" width="120" height="60" rx="12" fill="rgba(255, 255, 255, 0.15)"/>
+  <text x="365" y="295" fill="rgba(255, 255, 255, 0.75)" font-family="sans-serif" font-size="11" font-weight="500">WIND SPEED</text>
+  <text x="365" y="318" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="700">12 km/h</text>
+
+  <rect x="480" y="270" width="120" height="60" rx="12" fill="rgba(255, 255, 255, 0.15)"/>
+  <text x="500" y="295" fill="rgba(255, 255, 255, 0.75)" font-family="sans-serif" font-size="11" font-weight="500">PRESSURE</text>
+  <text x="500" y="318" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="700">1013 hPa</text>
+
+  <!-- Big Weather Icon inside card -->
+  <g transform="translate(500, 140)">
+    <!-- Cloud & Sun -->
+    <path d="M40 50 a25 25 0 0 1 45 -12 a18 18 0 0 1 25 15 a15 15 0 0 1 -5 27 h-65 a20 20 0 0 1 0 -30 z" fill="#ffffff" opacity="0.95"/>
+    <circle cx="45" cy="30" r="16" fill="url(#sunGrad)"/>
+  </g>
+</svg>
